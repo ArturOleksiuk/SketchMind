@@ -1,0 +1,6 @@
+@SketchMind.Api_HostAddress = http://localhost:5260
+
+GET {{SketchMind.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

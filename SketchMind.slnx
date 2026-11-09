@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="backend/SketchMind.Api/SketchMind.Api.csproj" />
+    <Project Path="backend/SketchMind.Application/SketchMind.Application.csproj" />
+    <Project Path="backend/SketchMind.Domain/SketchMind.Domain.csproj" />
+    <Project Path="backend/SketchMind.Infrastructure/SketchMind.Infrastructure.csproj" />
+  </Folder>
+</Solution>
