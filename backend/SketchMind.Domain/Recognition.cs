@@ -9,7 +9,7 @@ namespace SketchMind.Domain
         public string? PredictedLabel { get; private set; }
         public double? Confidence { get; private set; }
 
-        private Recognition() { }
+        public Recognition() { }
 
         public void Complete(string label, double confidence)
         {

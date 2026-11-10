@@ -5,4 +5,7 @@
     <Project Path="backend/SketchMind.Domain/SketchMind.Domain.csproj" />
     <Project Path="backend/SketchMind.Infrastructure/SketchMind.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/SketchMind.Domain.Tests/SketchMind.Domain.Tests.csproj" />
+  </Folder>
 </Solution>
