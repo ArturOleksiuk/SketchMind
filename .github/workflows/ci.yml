@@ -1,0 +1,11 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    steps:
+     - run: echo "SketchMind CI is running"
