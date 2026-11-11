@@ -1,16 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SketchMind.Application.Interfaces.Sketches;
 
 namespace SketchMind.Api.Controllers.Sketches;
 
 [ApiController]
 [Route("sketches")]
-public sealed class SketchesController : ControllerBase
+public sealed class SketchesController(ISketchService sketchService) : ControllerBase
 {
     private const long MaxImageSizeInBytes = 1024 * 1024;
 
     [HttpPost]
     [Consumes("multipart/form-data")]
-    public IActionResult Upload([FromForm] IFormFile? image)
+    public async Task<IActionResult> Upload([FromForm] IFormFile? image, CancellationToken cancellationToken)
     {
         if (image is null || image.Length == 0)
         {
@@ -24,6 +25,18 @@ public sealed class SketchesController : ControllerBase
                 new { message = "The image must be 1 MiB or smaler." });
         }
 
-        return Ok(new { sizeInBytes = image.Length });
+        using var content = image.OpenReadStream();
+
+        var result = await sketchService.UploadAsync(
+            content,
+            image.Length,
+            cancellationToken);
+
+        if (result is null)
+        {
+            return BadRequest(new { message = "The file must have a valid PNG signature." });
+        }
+
+        return Ok(result);
     }
 }
