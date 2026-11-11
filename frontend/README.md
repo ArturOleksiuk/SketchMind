@@ -2,6 +2,10 @@
 
 React + TypeScript + Vite. Залежності зафіксовано в `package-lock.json`.
 
+Стилізація — Tailwind CSS через Vite-плагін `@tailwindcss/vite`
+та імпорт у `src/index.css`. Utility-класи можна використовувати прямо
+в `className` компонентів; окремий `tailwind.config.js` для базового налаштування не потрібен.
+
 ## Локальний запуск
 
 Використовуй Node.js 22.19.0 (версія в `.nvmrc`) та npm.
