@@ -1,12 +1,12 @@
 # SketchMind ML Service
 
-This folder contains the dataset exploration code for SketchMind. The inspection script loads Google Quick, Draw! sketches, assigns class labels, and displays a sample.
+This folder contains the dataset exploration code for SketchMind.
 
 ## Dataset
 
-Google Quick, Draw! provides 28 × 28 grayscale sketches as NumPy `.npy` files. Each file contains drawings from a single category. See the [Quick, Draw! dataset documentation](https://github.com/googlecreativelab/quickdraw-dataset#numpy-bitmaps-npy).
+The [Google Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset#numpy-bitmaps-npy) provides 28 × 28 grayscale sketches as NumPy `.npy` files. Each file contains sketches from one category.
 
-Place `cat.npy` and `car.npy` in `ml-service/data/` to run the inspection script. Dataset files are kept locally and ignored by Git.
+Place your downloaded category files in `ml-service/data/`. The inspection script discovers the `.npy` files present in that folder, takes up to five sketches per file, and assigns numeric labels in alphabetical order by filename. Dataset files are ignored by Git.
 
 ## Run locally
 
@@ -19,8 +19,10 @@ python -m venv .venv
 .\.venv\Scripts\python.exe .\training\inspect_dataset.py
 ```
 
-The script prints the shapes of the image and label arrays, then displays one sketch with its class label. With five samples per class, the expected shapes are `(10, 784)` for images and `(10,)` for labels.
+If you already have a virtual environment with the dependencies installed, run only the final command from `ml-service/`.
+
+The script prints the class labels and array shapes, then displays one sketch with its class name. With five sketches from each of `bicycle.npy`, `car.npy`, `cat.npy`, `house.npy`, and `tree.npy`, the expected shapes are `(25, 784)` for images and `(25,)` for labels.
 
 ## Planned architecture
 
-The training code will use Quick, Draw! to train a PyTorch CNN and save its weights and class order. A separate FastAPI app will load those weights and classify PNG sketches sent by the ASP.NET Core API.
+The training code will use Quick, Draw! to train a PyTorch CNN and save its weights and class order. A separate FastAPI app will load the trained model and classify PNG sketches sent by the ASP.NET Core API.
