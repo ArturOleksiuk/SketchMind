@@ -69,3 +69,6 @@ logs/
 .DS_Store
 Thumbs.db
 [Dd]esktop.ini
+
+# Quick, Draw! dataset
+/ml-service/data/
