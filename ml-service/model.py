@@ -32,12 +32,12 @@ class SketchCNN(nn.Module):
         )
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
-        features = self.conv1(images) # (1, 8, 28, 28)
+        features = self.conv1(images) # (N, 8, 28, 28)
         features = self.relu(features)
-        features = self.pool(features) # (1, 8, 14, 14)
-        features = self.conv2(features) # (1, 16, 14, 14)
+        features = self.pool(features) # (N, 8, 14, 14)
+        features = self.conv2(features) # (N, 16, 14, 14)
         features = self.relu(features)
-        features = self.pool(features) # (1, 16, 7, 7)
+        features = self.pool(features) # (N, 16, 7, 7)
         
         features = self.flatten(features) # (N, 16, 7, 7) → (N, 784)
 
