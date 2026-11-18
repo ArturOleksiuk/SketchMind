@@ -6,7 +6,9 @@ This folder contains the dataset exploration code for SketchMind.
 
 The [Google Quick, Draw! dataset](https://github.com/googlecreativelab/quickdraw-dataset#numpy-bitmaps-npy) provides 28 × 28 grayscale sketches as NumPy `.npy` files. Each file contains sketches from one category.
 
-Place your downloaded category files in `ml-service/data/`. The inspection script discovers the `.npy` files present in that folder, takes up to five sketches per file, and assigns numeric labels in alphabetical order by filename. Dataset files are ignored by Git.
+Place your downloaded Quick, Draw! .npy files in ml-service/data/. The inspection script discovers the category files in that folder, assigns class IDs in alphabetical order by filename, and samples 10 sketches per category. It splits each category into 80% training, 10% validation, and 10% test data. Dataset files are ignored by Git.
+
+With five local category files, the script prints the class names and a training count of 40 sketches. It then displays a sample sketch. After you close the preview window, it prints the shape, data type, pixel range, and class label of one sample loaded by QuickDrawDataset. Each sample is returned as a torch.float32 tensor of shape (1, 28, 28) with pixel values scaled to [0, 1].
 
 ## Run locally
 
